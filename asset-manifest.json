@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/been-around-app/static/js/main.e505ea1b.chunk.js",
+    "main.js.map": "/been-around-app/static/js/main.e505ea1b.chunk.js.map",
+    "runtime~main.js": "/been-around-app/static/js/runtime~main.133f1d63.js",
+    "runtime~main.js.map": "/been-around-app/static/js/runtime~main.133f1d63.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/been-around-app/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.38d1e560.chunk.js": "/been-around-app/static/js/2.38d1e560.chunk.js",
+    "static/js/2.38d1e560.chunk.js.map": "/been-around-app/static/js/2.38d1e560.chunk.js.map",
+    "index.html": "/been-around-app/index.html",
+    "precache-manifest.ebcd985d8ebbc63654f70ca40d4bf714.js": "/been-around-app/precache-manifest.ebcd985d8ebbc63654f70ca40d4bf714.js",
+    "service-worker.js": "/been-around-app/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/been-around-app/static/css/2.22a7d4ef.chunk.css.map"
+  }
+}
