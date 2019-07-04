@@ -1,4 +1,4 @@
-const worldMapDataArray = {
+const worldMapDataObject = {
   BD: "Bangladesh",
   BE: "Belgium",
   BF: "Burkina Faso",
@@ -176,4 +176,4 @@ const worldMapDataArray = {
   QA: "Qatar",
   MZ: "Mozambique"
 };
-export default worldMapDataArray;
+export default worldMapDataObject;

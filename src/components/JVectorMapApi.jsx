@@ -1,63 +1,68 @@
 import React, { Component } from "react";
 import { VectorMap } from "react-jvectormap";
+import _ from "underscore";
 import worldMapDataObject from "../worldMapDataObject.js";
+// import worldMapDataArray from "../worldMapDataArray.js";
 // import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 
-const countryList = worldMapDataObject;
-// console.log(countryList);
+// const countryListArray = worldMapDataArray;
+// const countriesDataArray = [...countryListArray];
 
-// convert the country codes into an array
-const countryCodes = Object.keys(countryList);
+const countryListObject = worldMapDataObject;
+const countryCodes = Object.keys(countryListObject); // convert the country codes into an array
+const countriesDataObject = {};
 
-// set an object of Codes to false, 0, null dates
+// creates Object to access country data by Country Code
+for (var code of countryCodes) {
+  countriesDataObject[code] = {
+    name: countryListObject[code],
+    been: false,
+    color: 0,
+    dates: [null, null]
+  };
+}
+console.log(countriesDataObject);
+
 const countriesVisited = {};
-const countriesVisitedColor = {}; // these should all be combined into one
-const countriesVisitedDates = {};
 for (const country of countryCodes) {
   countriesVisited[country] = false;
-  countriesVisitedColor[country] = 0;
-  countriesVisitedDates[country] = [null, null];
 }
-// console.log(countriesVisitedColor);
 
 class JVectorMapApi extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedName: "",
-      selectedCode: "",
-      haveBeen: countriesVisited,
-      haveBeenColor: countriesVisitedColor,
-      date: countriesVisitedDates
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleCheckbox = this.handleCheckbox.bind(this);
-    // this.handleChangeDate = this.handleChangeDate.bind(this);
+  state = {
+    allData: countriesDataObject,
+    selectedName: "",
+    selectedCode: "",
+    haveBeen: countriesVisited
+  };
+
+  componentDidMount() {
+    console.log(this.state);
   }
 
-  handleClick(e, code) {
-    // console.log(code, countryList[code]);
-    this.refs.map.$mapObject.tip.hide(); // stops the lable from "sticking" on the screen
-    const countryName = countryList[code];
+  handleClick = (e, code) => {
+    // this.refs.map.$mapObject.tip.hide(); // stops the lable from "sticking" on the screen
+    const countryName = countryListObject[code];
     const countryCode = code;
-    this.setState({
+    this.setState(prevState => ({
+      ...prevState,
       selectedName: countryName,
       selectedCode: countryCode
-    });
-  }
+    }));
+  };
 
-  handleCheckbox(event) {
-    const { name, checked } = event.target;
+  handleCheckbox = event => {
+    const { name, checked } = event.target; // name is the country code
     this.setState(prevState => {
-      return {
-        haveBeen: {
-          ...prevState.haveBeen,
-          [name]: checked
-        }
+      const newState = {
+        ...prevState,
+        allData: { ...prevState.allData }
       };
+      newState.allData[name].been = checked;
+      console.log(newState);
+      return newState;
     });
-    // console.log(this.state.haveBeenColor);
-  }
+  };
 
   // handleChangeDate(date) {
   //   const dateCode = this.state.selectedCode;
@@ -72,6 +77,14 @@ class JVectorMapApi extends Component {
   // }
 
   render() {
+    console.log("Render");
+    const colors = _.mapObject(this.state.allData, (countryData, value) => {
+      if (this.state.selectedCode === value) {
+        return "Selected";
+      }
+      return countryData.been ? "HasBeen" : "HasNotBeen";
+    });
+    // console.log(JSON.stringify(colors));
     return (
       <div style={{ width: "100%", height: 500 }} className="container-fluid">
         <VectorMap
@@ -86,18 +99,19 @@ class JVectorMapApi extends Component {
           }}
           containerClassName="map"
           onRegionClick={this.handleClick}
-          // series={{
-          //   regions: [
-          //     {
-          //       values: countriesVisited,
-          //       attribute: "fill",
-          //       scale: {
-          //         1: "green",
-          //         0: "white"
-          //       }
-          //     }
-          //   ]
-          // }}
+          series={{
+            regions: [
+              {
+                values: colors,
+                attribute: "fill",
+                scale: {
+                  HasBeen: "green",
+                  HasNotBeen: "white",
+                  Selected: "yellow"
+                }
+              }
+            ]
+          }}
         />
         <div
           style={{ display: this.state.selectedName ? "block" : "none" }}
@@ -114,7 +128,11 @@ class JVectorMapApi extends Component {
                 className="custom-control-input"
                 key={this.state.selectedCode}
                 name={this.state.selectedCode}
-                checked={this.state.haveBeen[this.state.selectedCode]}
+                checked={
+                  this.state.allData[this.state.selectedCode]
+                    ? this.state.allData[this.state.selectedCode].been
+                    : false
+                }
                 onChange={this.handleCheckbox}
               />
               <label className="custom-control-label" htmlFor="customSwitch1">
