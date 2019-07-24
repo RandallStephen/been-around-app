@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/been-around-app/static/js/main.e4bbfe9b.chunk.js",
-    "main.js.map": "/been-around-app/static/js/main.e4bbfe9b.chunk.js.map",
+    "main.js": "/been-around-app/static/js/main.ae3b018d.chunk.js",
+    "main.js.map": "/been-around-app/static/js/main.ae3b018d.chunk.js.map",
     "runtime~main.js": "/been-around-app/static/js/runtime~main.133f1d63.js",
     "runtime~main.js.map": "/been-around-app/static/js/runtime~main.133f1d63.js.map",
-    "static/css/2.22a7d4ef.chunk.css": "/been-around-app/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.76427d7c.chunk.js": "/been-around-app/static/js/2.76427d7c.chunk.js",
-    "static/js/2.76427d7c.chunk.js.map": "/been-around-app/static/js/2.76427d7c.chunk.js.map",
+    "static/css/2.9913ad1d.chunk.css": "/been-around-app/static/css/2.9913ad1d.chunk.css",
+    "static/js/2.721c2a7c.chunk.js": "/been-around-app/static/js/2.721c2a7c.chunk.js",
+    "static/js/2.721c2a7c.chunk.js.map": "/been-around-app/static/js/2.721c2a7c.chunk.js.map",
     "index.html": "/been-around-app/index.html",
-    "precache-manifest.b490a4fad5f369533cf38bf1945d8bc9.js": "/been-around-app/precache-manifest.b490a4fad5f369533cf38bf1945d8bc9.js",
+    "precache-manifest.6ed6fdfc52c474c78c0cc907b4390984.js": "/been-around-app/precache-manifest.6ed6fdfc52c474c78c0cc907b4390984.js",
     "service-worker.js": "/been-around-app/service-worker.js",
-    "static/css/2.22a7d4ef.chunk.css.map": "/been-around-app/static/css/2.22a7d4ef.chunk.css.map"
+    "static/css/2.9913ad1d.chunk.css.map": "/been-around-app/static/css/2.9913ad1d.chunk.css.map"
   }
 }
